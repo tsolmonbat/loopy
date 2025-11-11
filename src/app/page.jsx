@@ -1,6 +1,5 @@
 "use client";
 import React, { useMemo, useState } from "react";
-import Marquee from "react-fast-marquee";
 
 export default function Page() {
   const products = [
@@ -29,12 +28,9 @@ export default function Page() {
       }),
     [products, query, selectedCategory]
   );
-  
-  const fixedProducts = products.slice(0, 3);
-  const scrollingProducts = products.slice(3);
 
   return (
-    <div className="bg-[#0B0B0B] text-white"> 
+    <div className="bg-[#0B0B0B] text-white">
       <header className="flex items-center gap-6 px-6 py-4 border-b border-neutral-800 sticky top-0 bg-[#0B0B0B] z-10">
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 bg-neutral-900 rounded flex items-center justify-center text-white font-bold">A</div>
@@ -55,7 +51,13 @@ export default function Page() {
         <div className="ml-6">
           <button className="w-10 h-10 rounded border border-neutral-800 flex items-center justify-center">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-neutral-300">
-              <path d="M3 3h2l.4 2M7 13h10l4-8H6.4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path
+                d="M3 3h2l.4 2M7 13h10l4-8H6.4"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </button>
         </div>
@@ -82,7 +84,10 @@ export default function Page() {
             {filtered.map((p) => (
               <div
                 key={p.id}
-                onClick={() => { setSelectedProduct(p); setGalleryIndex(0); }}
+                onClick={() => {
+                  setSelectedProduct(p);
+                  setGalleryIndex(0);
+                }}
                 className="relative bg-black border border-neutral-800 rounded-lg overflow-hidden h-[360px] group transition-all duration-300 hover:border-blue-500 hover:shadow-[0_0_0_6px_rgba(59,130,246,0.12)] cursor-pointer"
               >
                 <div className="absolute inset-0 bg-black/90 flex items-center justify-center overflow-hidden">
@@ -101,27 +106,6 @@ export default function Page() {
           </div>
         </main>
       </div>
-      
-      <section className="mt-12 py-12 px-6 overflow-hidden">
-        <h2 className="text-xl font-semibold mb-6">Featured Products</h2>
-        
-        <div className="w-full">
-          <Marquee speed={40} gradient={false} pauseOnHover={true} autoFill>
-            {scrollingProducts.map((p) => (
-              <div 
-                key={p.id}
-                className="w-[200px] h-[200px] mx-2 flex-shrink-0 bg-black border border-neutral-800 rounded-lg overflow-hidden flex items-center justify-center"
-              >
-                <img
-                  src={p.img}
-                  alt={p.name}
-                  className="max-h-full max-w-full object-contain"
-                />
-              </div>
-            ))}
-          </Marquee>
-        </div>
-      </section>
 
       <footer className="mt-12 border-t border-neutral-800 text-neutral-400">
         <div className="max-w-7xl mx-auto px-6 py-10 flex justify-between">
